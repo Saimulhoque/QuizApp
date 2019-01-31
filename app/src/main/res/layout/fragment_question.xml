@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="@dimen/small"
+        android:padding="@dimen/usual"
+        android:clickable="true"
+        android:focusable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:padding="@dimen/small"
+                    android:text="Cat"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:layout_marginTop="@dimen/usual"
+                    android:id="@+id/radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.forbitbd.quizapp.customView.MyRadioButton
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TTTTTT"
+                        android:id="@+id/opt_one"/>
+
+                    <com.forbitbd.quizapp.customView.MyRadioButton
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TTTTTT"
+                        android:id="@+id/opt_two"/>
+
+                    <com.forbitbd.quizapp.customView.MyRadioButton
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TTTTTT"
+                        android:id="@+id/opt_three"/>
+
+                    <com.forbitbd.quizapp.customView.MyRadioButton
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TTTTTT"
+                        android:id="@+id/opt_four"/>
+
+                    <com.forbitbd.quizapp.customView.MyRadioButton
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TTTTTT"
+                        android:id="@+id/opt_five"/>
+
+
+
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous"
+                    android:background="@drawable/my_ripple"
+                    android:id="@+id/previous"
+                    android:textAllCaps="true"
+                    android:visibility="gone"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:background="@drawable/my_ripple"
+                    android:id="@+id/next"
+                    android:textAllCaps="true"
+                    android:textSize="16sp"
+                    android:layout_alignParentEnd="true"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/black"
+        android:background="@color/colorPrimary"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/indicator"
+        android:visibility="gone"
+        android:padding="@dimen/small">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:background="@drawable/ripple"
+            android:textColor="@android:color/white"
+            android:text="1"
+            android:id="@+id/current"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/of"
+            android:layout_marginStart="@dimen/usual"
+            android:layout_toRightOf="@+id/current"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:background="@drawable/ripple"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@color/colorAccent"
+            android:layout_centerVertical="true"
+            android:text="of"/>
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_marginStart="@dimen/usual"
+            android:layout_toRightOf="@+id/of"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:background="@drawable/ripple"
+            android:textColor="@android:color/white"
+            android:layout_centerVertical="true"
+            android:text="100"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Submit"
+            android:id="@+id/submit"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/arima_madurai_medium"
+            android:layout_marginStart="@dimen/usual"
+            android:layout_marginEnd="@dimen/usual"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_above="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>
