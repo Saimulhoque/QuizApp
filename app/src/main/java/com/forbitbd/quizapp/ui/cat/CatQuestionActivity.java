@@ -1,5 +1,6 @@
 package com.forbitbd.quizapp.ui.cat;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,7 +17,10 @@ import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
 import com.forbitbd.quizapp.model.Question;
 import com.forbitbd.quizapp.ui.cat.question.QuestionFragment;
+import com.forbitbd.quizapp.ui.login.Login;
+import com.forbitbd.quizapp.util.AppPreference;
 import com.forbitbd.quizapp.util.Constant;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,7 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
     private CatPresenter mPresenter;
 
     private Category category;
+    private String subcat;
 
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
@@ -45,9 +50,11 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
 
         this.questionList = new ArrayList<>();
 
-        mPresenter = new CatPresenter(this);
+        mPresenter = new CatPresenter(this, AppPreference.getInstance(getApplicationContext()));
 
         category = (Category) getIntent().getSerializableExtra(Constant.CATEGORY);
+        int position = getIntent().getIntExtra(Constant.SUBCAT_POS,0);
+        subcat = category.getSubcats().get(position);
 
         setupToolbar();
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -64,7 +71,7 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
         viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
         //setupViewPager(viewPager);
-        mPresenter.getAllQuestions(category.getName());
+        mPresenter.getAllQuestions(category.getName(),subcat);
 
         rIndicator = findViewById(R.id.indicator);
         tvCurrent = findViewById(R.id.current);
@@ -127,6 +134,12 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
 
         adapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void startLoginActivity() {
+        TastyToast.makeText(getApplicationContext(),"Authorization Failed",TastyToast.LENGTH_LONG,TastyToast.ERROR);
+        startActivity(new Intent(getApplicationContext(), Login.class));
     }
 
 

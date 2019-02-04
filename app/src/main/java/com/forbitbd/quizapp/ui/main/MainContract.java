@@ -7,11 +7,22 @@ import java.util.List;
 public interface MainContract {
 
     interface Presenter{
-        void getAllCategories();
+
+        void startLoginActivity();
+        void openDrawer();
+        void loadHomeFragment();
+        void loadProfileFragment();
+        void loadAboutUsFragment();
+        void logout();
     }
 
     interface View{
-        void renderRecyclerView(List<Category> categoryList);
-        void itemClick(Category category);
+        void startLoginActivity();
+
+        void openDrawer();
+        void loadHomeFragment();
+        void loadProfileFragment();
+        void loadAboutUsFragment();
+        void logout();
     }
 }

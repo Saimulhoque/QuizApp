@@ -1,15 +1,20 @@
-package com.forbitbd.quizapp.ui.main;
+package com.forbitbd.quizapp.ui.main.home;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alespero.expandablecardview.ExpandableCardView;
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
+import com.forbitbd.quizapp.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +23,14 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatHolder> {
 
     private List<Category> categoryList;
     private LayoutInflater inflater;
-    private Activity activity;
+    private Fragment mFragment;
 
 
-    public CatAdapter(Activity activity) {
-        this.activity = activity;
+    public CatAdapter(Fragment fragment) {
+        this.mFragment = fragment;
         this.categoryList = new ArrayList<>();
 
-        this.inflater = LayoutInflater.from(activity);
+        this.inflater = LayoutInflater.from(fragment.getContext());
     }
 
     @NonNull
@@ -53,24 +58,29 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatHolder> {
     }
 
     class CatHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView tvName;
+        ExpandableCardView tvCategory;
+        RecyclerView rvSubcat;
 
         public CatHolder(@NonNull View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.name);
-            itemView.setOnClickListener(this);
+            tvCategory = itemView.findViewById(R.id.category);
+            rvSubcat = itemView.findViewById(R.id.rv_subcat);
+            rvSubcat.setLayoutManager(new LinearLayoutManager(mFragment.getContext()));
+            //itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if(activity instanceof MainActivity){
-                MainActivity ma = (MainActivity) activity;
-                ma.itemClick(categoryList.get(getAdapterPosition()));
-            }
+            /*if(mFragment instanceof HomeFragment){
+                HomeFragment hf = (HomeFragment) mFragment;
+                hf.itemClick(categoryList.get(getAdapterPosition()));
+            }*/
         }
 
         public void bind(Category category){
-            tvName.setText(category.getName());
+            tvCategory.setTitle(category.getName());
+            SubcatAdapter adapter = new SubcatAdapter(mFragment,category);
+            rvSubcat.setAdapter(adapter);
         }
     }
 }

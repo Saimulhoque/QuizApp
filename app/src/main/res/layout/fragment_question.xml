@@ -21,7 +21,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom"
                 android:padding="16dp"
                 android:orientation="vertical">
 
@@ -35,63 +36,72 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <RadioGroup
-                    android:layout_marginTop="@dimen/usual"
-                    android:id="@+id/radio_group"
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.forbitbd.quizapp.customView.MyRadioButton
-                        android:layout_marginTop="@dimen/small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TTTTTT"
-                        android:id="@+id/opt_one"/>
+                    <RadioGroup
+                        android:layout_marginTop="@dimen/usual"
+                        android:id="@+id/radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <com.forbitbd.quizapp.customView.MyRadioButton
-                        android:layout_marginTop="@dimen/small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TTTTTT"
-                        android:id="@+id/opt_two"/>
+                        <com.forbitbd.quizapp.customView.MyRadioButton
+                            android:layout_marginTop="@dimen/small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TTTTTT"
+                            android:id="@+id/opt_one"/>
 
-                    <com.forbitbd.quizapp.customView.MyRadioButton
-                        android:layout_marginTop="@dimen/small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TTTTTT"
-                        android:id="@+id/opt_three"/>
+                        <com.forbitbd.quizapp.customView.MyRadioButton
+                            android:layout_marginTop="@dimen/small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TTTTTT"
+                            android:id="@+id/opt_two"/>
 
-                    <com.forbitbd.quizapp.customView.MyRadioButton
-                        android:layout_marginTop="@dimen/small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TTTTTT"
-                        android:id="@+id/opt_four"/>
+                        <com.forbitbd.quizapp.customView.MyRadioButton
+                            android:layout_marginTop="@dimen/small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TTTTTT"
+                            android:id="@+id/opt_three"/>
 
-                    <com.forbitbd.quizapp.customView.MyRadioButton
-                        android:layout_marginTop="@dimen/small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TTTTTT"
-                        android:id="@+id/opt_five"/>
+                        <com.forbitbd.quizapp.customView.MyRadioButton
+                            android:layout_marginTop="@dimen/small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TTTTTT"
+                            android:id="@+id/opt_four"/>
+
+                        <com.forbitbd.quizapp.customView.MyRadioButton
+                            android:layout_marginTop="@dimen/small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TTTTTT"
+                            android:id="@+id/opt_five"/>
 
 
 
 
 
-                </RadioGroup>
+                    </RadioGroup>
+
+                </ScrollView>
+
+
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/bottom"
                 android:layout_alignParentBottom="true"
                 android:padding="@dimen/medium">
 

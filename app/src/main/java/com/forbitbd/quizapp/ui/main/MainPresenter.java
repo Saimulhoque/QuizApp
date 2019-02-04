@@ -3,6 +3,7 @@ package com.forbitbd.quizapp.ui.main;
 import com.forbitbd.quizapp.api.CivilClient;
 import com.forbitbd.quizapp.api.ServiceGenerator;
 import com.forbitbd.quizapp.model.CategoriesResponse;
+import com.forbitbd.quizapp.util.AppPreference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -11,32 +12,44 @@ import retrofit2.Response;
 public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View mView;
+    private AppPreference appPreference;
 
-    public MainPresenter(MainContract.View mView) {
+    public MainPresenter(MainContract.View mView,AppPreference appPreference) {
         this.mView = mView;
+        this.appPreference = appPreference;
     }
 
 
+
+
     @Override
-    public void getAllCategories() {
-        CivilClient civilClient = ServiceGenerator.createService(CivilClient.class);
+    public void startLoginActivity() {
+        mView.startLoginActivity();
+    }
 
-        Call<CategoriesResponse> call = civilClient.getAllCategories();
+    @Override
+    public void openDrawer() {
+        mView.openDrawer();
+    }
 
-        call.enqueue(new Callback<CategoriesResponse>() {
-            @Override
-            public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
-                if(response.code()==200){
-                    CategoriesResponse categoriesResponse = response.body();
+    @Override
+    public void loadHomeFragment() {
+        mView.loadHomeFragment();
+    }
 
-                    mView.renderRecyclerView(categoriesResponse.getCategories());
-                }
-            }
+    @Override
+    public void loadProfileFragment() {
+        mView.loadProfileFragment();
+    }
 
-            @Override
-            public void onFailure(Call<CategoriesResponse> call, Throwable t) {
+    @Override
+    public void loadAboutUsFragment() {
+        mView.loadAboutUsFragment();
+    }
 
-            }
-        });
+    @Override
+    public void logout() {
+        appPreference.setLogin(false);
+        mView.logout();
     }
 }
