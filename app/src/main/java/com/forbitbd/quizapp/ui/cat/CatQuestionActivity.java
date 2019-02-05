@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,14 +18,16 @@ import com.forbitbd.quizapp.model.Category;
 import com.forbitbd.quizapp.model.Question;
 import com.forbitbd.quizapp.ui.cat.question.QuestionFragment;
 import com.forbitbd.quizapp.ui.login.Login;
+import com.forbitbd.quizapp.ui.result.ResultActivity;
 import com.forbitbd.quizapp.util.AppPreference;
 import com.forbitbd.quizapp.util.Constant;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatQuestionActivity extends PrebaseActivity implements CatContract.View {
+public class CatQuestionActivity extends PrebaseActivity implements CatContract.View ,View.OnClickListener{
 
     private CatPresenter mPresenter;
 
@@ -41,6 +43,8 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
     private RelativeLayout rIndicator;
 
     private int currentItem;
+
+    private Button btnSubmit;
 
 
     @Override
@@ -99,6 +103,9 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
 
             }
         });
+
+        btnSubmit = findViewById(R.id.submit);
+        btnSubmit.setOnClickListener(this);
     }
 
     public void previous(){
@@ -140,6 +147,18 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
     public void startLoginActivity() {
         TastyToast.makeText(getApplicationContext(),"Authorization Failed",TastyToast.LENGTH_LONG,TastyToast.ERROR);
         startActivity(new Intent(getApplicationContext(), Login.class));
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.QUESTION_LIST, (Serializable) questionList);
+        bundle.putString(Constant.SUBCAT,subcat);
+        bundle.putSerializable(Constant.CATEGORY,category);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
     }
 
 
