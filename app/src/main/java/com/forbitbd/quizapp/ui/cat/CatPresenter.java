@@ -25,6 +25,8 @@ public class CatPresenter implements CatContract.Presenter {
         CivilClient civilClient = ServiceGenerator.createService(CivilClient.class);
         String token = "Bearer "+appPreference.getToken();
 
+        Log.d("HHHHH","Sub Cat "+subcat);
+
         Call<QuestionsResponse> call = civilClient.getCategorizeQuestions(token,catName,subcat);
 
         call.enqueue(new Callback<QuestionsResponse>() {

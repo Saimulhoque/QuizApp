@@ -36,7 +36,7 @@ public class SubcatAdapter extends RecyclerView.Adapter<SubcatAdapter.SubcatHold
 
     @Override
     public void onBindViewHolder(@NonNull SubcatHolder holder, int position) {
-        String subCat = category.getSubcats().get(position);
+        String subCat = category.getSubcats().get(position).getDisplay_name();
         holder.bind(subCat);
     }
 
@@ -64,7 +64,7 @@ public class SubcatAdapter extends RecyclerView.Adapter<SubcatAdapter.SubcatHold
         public void onClick(View view) {
             if(mFragment instanceof HomeFragment){
                 HomeFragment homeFragment = (HomeFragment) mFragment;
-                homeFragment.itemClick(category,getAdapterPosition());
+                homeFragment.itemClick(category,category.getSubcats().get(getAdapterPosition()));
             }
         }
     }

@@ -16,6 +16,7 @@ import com.forbitbd.quizapp.PrebaseActivity;
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
 import com.forbitbd.quizapp.model.Question;
+import com.forbitbd.quizapp.model.SubCategory;
 import com.forbitbd.quizapp.ui.cat.question.QuestionFragment;
 import com.forbitbd.quizapp.ui.login.Login;
 import com.forbitbd.quizapp.ui.result.ResultActivity;
@@ -32,7 +33,7 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
     private CatPresenter mPresenter;
 
     private Category category;
-    private String subcat;
+    private SubCategory subCategory;
 
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
@@ -57,16 +58,15 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
         mPresenter = new CatPresenter(this, AppPreference.getInstance(getApplicationContext()));
 
         category = (Category) getIntent().getSerializableExtra(Constant.CATEGORY);
-        int position = getIntent().getIntExtra(Constant.SUBCAT_POS,0);
-        subcat = category.getSubcats().get(position);
+        subCategory = (SubCategory) getIntent().getSerializableExtra(Constant.SUBCAT_POS);
 
         setupToolbar();
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle(category.getName());
+        getSupportActionBar().setTitle(category.getDisplay_name());
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        Log.d("HHHHHH",category.getName());
+        Log.d("HHHHHH",subCategory.getDisplay_name());
 
         initView();
     }
@@ -75,7 +75,7 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
         viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
         //setupViewPager(viewPager);
-        mPresenter.getAllQuestions(category.getName(),subcat);
+        mPresenter.getAllQuestions(category.getName(),subCategory.getName());
 
         rIndicator = findViewById(R.id.indicator);
         tvCurrent = findViewById(R.id.current);
@@ -154,7 +154,7 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
         Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.QUESTION_LIST, (Serializable) questionList);
-        bundle.putString(Constant.SUBCAT,subcat);
+        bundle.putString(Constant.SUBCAT,subCategory.getName());
         bundle.putSerializable(Constant.CATEGORY,category);
         intent.putExtras(bundle);
         startActivity(intent);

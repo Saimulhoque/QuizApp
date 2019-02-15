@@ -78,7 +78,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatHolder> {
         }
 
         public void bind(Category category){
-            tvCategory.setTitle(category.getName());
+            tvCategory.setTitle(category.getDisplay_name());
             SubcatAdapter adapter = new SubcatAdapter(mFragment,category);
             rvSubcat.setAdapter(adapter);
         }

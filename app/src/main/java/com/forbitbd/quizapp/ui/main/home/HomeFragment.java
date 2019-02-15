@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
+import com.forbitbd.quizapp.model.SubCategory;
 import com.forbitbd.quizapp.ui.cat.CatQuestionActivity;
 import com.forbitbd.quizapp.ui.main.BaseFragment;
 import com.forbitbd.quizapp.util.Constant;
@@ -74,16 +75,16 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         for (Category x: categoryList){
             adapter.addCategory(x);
 
-            Log.d("UUUUU",x.getSubcats().get(0));
+           // Log.d("UUUUU",x.getSubcats().get(0));
         }
     }
 
     @Override
-    public void itemClick(Category category,int position) {
+    public void itemClick(Category category,SubCategory subCategory) {
         Intent intent = new Intent(getContext(), CatQuestionActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.CATEGORY,category);
-        bundle.putInt(Constant.SUBCAT_POS,position);
+        bundle.putSerializable(Constant.SUBCAT_POS,subCategory);
 
         intent.putExtras(bundle);
 
