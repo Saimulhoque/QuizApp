@@ -16,6 +16,7 @@ import com.forbitbd.quizapp.PrebaseActivity;
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
 import com.forbitbd.quizapp.model.Question;
+import com.forbitbd.quizapp.model.Result;
 import com.forbitbd.quizapp.model.SubCategory;
 import com.forbitbd.quizapp.ui.cat.question.QuestionFragment;
 import com.forbitbd.quizapp.ui.login.Login;
@@ -150,14 +151,28 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
     }
 
     @Override
-    public void onClick(View view) {
+    public void showDialog() {
+        showProgressDialog();
+    }
+
+    @Override
+    public void startResultActivity() {
+        hideProgressDialog();
+
         Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.QUESTION_LIST, (Serializable) questionList);
-        bundle.putString(Constant.SUBCAT,subCategory.getName());
+        bundle.putString(Constant.SUBCAT,subCategory.getDisplay_name());
         bundle.putSerializable(Constant.CATEGORY,category);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        mPresenter.postResultToDatabase(category.getName(),subCategory.getName(),getResult());
+        //Log.d("HHHHHHH",AppPreference.getInstance(getApplicationContext()).getEmail());
+
 
     }
 
@@ -189,6 +204,17 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+
+    private List<Result> getResult(){
+        List<Result> retList = new ArrayList<>();
+
+        for (Question question:questionList){
+            retList.add(question.getResult());
+        }
+
+        return retList;
     }
 
 }

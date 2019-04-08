@@ -62,4 +62,8 @@ public class Question implements Serializable {
     public void setUser_answer(int user_answer) {
         this.user_answer = user_answer;
     }
+
+    public Result getResult(){
+        return new Result(this._id,this.user_answer);
+    }
 }

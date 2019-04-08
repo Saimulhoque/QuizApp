@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.forbitbd.quizapp.PrebaseActivity;
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
+import com.forbitbd.quizapp.model.PostResult;
+import com.forbitbd.quizapp.model.ResultResponse;
 import com.forbitbd.quizapp.ui.cat.CatQuestionActivity;
 import com.forbitbd.quizapp.ui.login.Login;
 import com.forbitbd.quizapp.ui.main.home.HomeFragment;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
 
     private LinearLayout rvHome,rvProfile, rvContactUs, rvLogOut;
+
+    private List<PostResult> postResultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         rvLogOut.setOnClickListener(this);
         rvProfile.setOnClickListener(this);
 
-        mPresenter.loadHomeFragment();
+        //mPresenter.loadHomeFragment();
+        mPresenter.getUserResults();
 
 
        //mPresenter.getAllCategories();
@@ -95,6 +100,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void startLoginActivity() {
         Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void init(ResultResponse resultResponse) {
+        this.postResultList = resultResponse.getResults();
+        loadHomeFragment();
     }
 
     @Override
@@ -154,5 +165,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void setTitle(String title){
         tvTitle.setText(title);
+    }
+
+    public List<PostResult> getPostResultList(){
+        return this.postResultList;
     }
 }

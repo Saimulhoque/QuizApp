@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
+import com.forbitbd.quizapp.model.PostResult;
+import com.forbitbd.quizapp.model.SubCategory;
 
 import java.util.List;
 
@@ -36,8 +39,10 @@ public class SubcatAdapter extends RecyclerView.Adapter<SubcatAdapter.SubcatHold
 
     @Override
     public void onBindViewHolder(@NonNull SubcatHolder holder, int position) {
-        String subCat = category.getSubcats().get(position).getDisplay_name();
+        SubCategory subCat = category.getSubcats().get(position);
         holder.bind(subCat);
+
+
     }
 
     @Override
@@ -47,17 +52,30 @@ public class SubcatAdapter extends RecyclerView.Adapter<SubcatAdapter.SubcatHold
 
     class SubcatHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView tvName;
+        TextView tvName,tvResult;
 
         public SubcatHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.name);
-
+            tvResult = itemView.findViewById(R.id.result);
             itemView.setOnClickListener(this);
         }
 
-        public void bind(String name){
-            tvName.setText(name);
+        public void bind(SubCategory subCategory){
+            tvName.setText(subCategory.getDisplay_name());
+
+            if(mFragment instanceof HomeFragment){
+                HomeFragment homeFragment = (HomeFragment) mFragment;
+                PostResult postResult = homeFragment.getResult(subCategory.getName());
+
+                if(postResult==null){
+                    Log.d("FFFFFFFFUUUUUUUU","NULL");
+                    tvResult.setVisibility(View.GONE);
+                }else{
+                    Log.d("FFFFFFFFUUUUUUUU","NOT NULL");
+                    tvResult.setVisibility(View.VISIBLE);
+                }
+            }
         }
 
         @Override

@@ -4,8 +4,12 @@ import android.util.Log;
 
 import com.forbitbd.quizapp.api.CivilClient;
 import com.forbitbd.quizapp.api.ServiceGenerator;
+import com.forbitbd.quizapp.model.PostResult;
 import com.forbitbd.quizapp.model.QuestionsResponse;
+import com.forbitbd.quizapp.model.Result;
 import com.forbitbd.quizapp.util.AppPreference;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,5 +50,37 @@ public class CatPresenter implements CatContract.Presenter {
 
             }
         });
+    }
+
+    @Override
+    public void postResultToDatabase(String catName, String subcat, List<Result> results) {
+        mView.showDialog();
+        CivilClient civilClient = ServiceGenerator.createService(CivilClient.class);
+        PostResult postResult = new PostResult();
+        postResult.setCat_name(catName);
+        postResult.setSubcat_name(subcat);
+        postResult.setEmail(appPreference.getEmail());
+        postResult.setResults(results);
+
+        civilClient.postResult(postResult)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(response.code()==201){
+                            Log.d("HHHHH","OK");
+
+                            mView.startResultActivity();
+
+
+                        }else{
+                            Log.d("HHHHH","Status Error");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Log.d("HHHHH","Error "+t.getMessage());
+                    }
+                });
     }
 }

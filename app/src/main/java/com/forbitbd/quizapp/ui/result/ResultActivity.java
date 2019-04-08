@@ -43,7 +43,7 @@ public class ResultActivity extends PrebaseActivity implements ResultContract.Vi
 
         setupToolbar();
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle(category.getName()+" | "+subCat);
+        getSupportActionBar().setTitle(category.getDisplay_name()+" | "+subCat);
 
         initView();
 
