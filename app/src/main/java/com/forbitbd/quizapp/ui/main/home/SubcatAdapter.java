@@ -1,6 +1,5 @@
 package com.forbitbd.quizapp.ui.main.home;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -66,14 +65,16 @@ public class SubcatAdapter extends RecyclerView.Adapter<SubcatAdapter.SubcatHold
 
             if(mFragment instanceof HomeFragment){
                 HomeFragment homeFragment = (HomeFragment) mFragment;
-                PostResult postResult = homeFragment.getResult(subCategory.getName());
+                List<PostResult> postResults = homeFragment.getResults(subCategory.getName());
 
-                if(postResult==null){
-                    Log.d("FFFFFFFFUUUUUUUU","NULL");
+                if(postResults==null){
                     tvResult.setVisibility(View.GONE);
+                    //tvResult.setText("0 Times");
                 }else{
                     Log.d("FFFFFFFFUUUUUUUU","NOT NULL");
                     tvResult.setVisibility(View.VISIBLE);
+                    tvResult.setText(postResults.size()+" Times");
+
                 }
             }
         }

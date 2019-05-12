@@ -6,6 +6,7 @@ import com.forbitbd.quizapp.api.CivilClient;
 import com.forbitbd.quizapp.api.ServiceGenerator;
 import com.forbitbd.quizapp.model.CategoriesResponse;
 import com.forbitbd.quizapp.model.ResultResponse;
+import com.forbitbd.quizapp.model.User;
 import com.forbitbd.quizapp.util.AppPreference;
 
 import retrofit2.Call;
@@ -23,7 +24,42 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
 
+    @Override
+    public void getUser() {
 
+        CivilClient cmClient = ServiceGenerator.createService(CivilClient.class);
+        Call<User> call = cmClient.getUser(appPreference.getID());
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.code()==200){
+                    Log.d("JJJJJ","Found");
+                    User user = response.body();
+
+                    if(user==null){
+                        mView.logout();
+                    }else{
+                        mView.renderNav(user);
+
+                    }
+
+
+
+                    //Todo Uncomment next
+
+                }else{
+                    Log.d("JJJJJ","Not Found "+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("JJJJJ","Error "+t.getMessage());
+            }
+        });
+
+    }
 
     @Override
     public void startLoginActivity() {

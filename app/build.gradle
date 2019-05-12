@@ -10,10 +10,32 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    signingConfigs {
         release {
+            storeFile file("D:\\Sohel\\KEYSTORE\\Quiz\\quiz.jks")
+            storePassword "s0201078"
+            keyAlias "android_key"
+            keyPassword "s0201078"
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
+            useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -42,4 +64,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
     implementation 'com.alespero:expandable-cardview:0.8'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.5.1' // Image Cropper Library
 }

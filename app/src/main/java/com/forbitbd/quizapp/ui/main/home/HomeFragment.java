@@ -67,7 +67,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     public void onResume() {
         super.onResume();
 
-        setTitle("Categories");
+        setTitle(getString(R.string.app_name));
     }
 
     @Override
@@ -89,5 +89,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         intent.putExtras(bundle);
 
         startActivity(intent);
+
+
     }
 }

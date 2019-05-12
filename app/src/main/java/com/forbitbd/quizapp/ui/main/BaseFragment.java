@@ -6,6 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.forbitbd.quizapp.model.PostResult;
+import com.forbitbd.quizapp.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseFragment extends Fragment {
 
@@ -27,14 +31,28 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public PostResult getResult(String subcategory){
+    public List<PostResult> getResults(String subcategory){
+        List<PostResult> postResults = new ArrayList<>();
         for (PostResult postResult:activity.getPostResultList()){
             if(postResult.getSubcat_name().equals(subcategory)){
-                return postResult;
+                postResults.add(postResult);
             }
         }
-        return null;
+        return postResults;
     }
+
+    public boolean isOnline(){
+        return activity.isOnline();
+    }
+
+    public void updateUI(User user){
+        activity.renderNav(user);
+    }
+
+    public void cropImage(){
+        activity.openCropImageActivity(true);
+    }
+
 
 
 
