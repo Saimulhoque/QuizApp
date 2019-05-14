@@ -46,7 +46,7 @@ public class BaseFragment extends Fragment {
     }
 
     public void updateUI(User user){
-        activity.renderNav(user);
+        activity.renderNav(user,false);
     }
 
     public void cropImage(){

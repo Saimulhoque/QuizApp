@@ -7,17 +7,21 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import com.forbitbd.quizapp.ui.main.nav.NavFragment;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -32,6 +36,11 @@ public class PrebaseActivity extends AppCompatActivity {
 
     private TextView tvTitle;
     private Toolbar toolbar;
+
+
+    private DrawerLayout mDrawerLayout;
+    private FragmentManager manager;
+    private NavFragment drawerFragment;
 
 
 
@@ -103,6 +112,22 @@ public class PrebaseActivity extends AppCompatActivity {
         }
 
 
+    }
+
+
+    public void setUpNavigationDrawer(){
+        setupToolbar();
+        manager = getSupportFragmentManager();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerFragment =
+                (NavFragment) manager.findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp( mDrawerLayout, toolbar);
+        //getSupportActionBar().setTitle(Constant.HOME);
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+    public NavFragment getDrawer(){
+        return drawerFragment;
     }
 
 

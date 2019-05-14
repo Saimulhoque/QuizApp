@@ -11,23 +11,16 @@ public interface MainContract {
     interface Presenter{
 
         void getUser();
-
         void startLoginActivity();
-        void openDrawer();
-        void loadHomeFragment();
-        void loadProfileFragment();
-        void loadAboutUsFragment();
         void getUserResults();
-        void logout();
     }
 
     interface View{
         void startLoginActivity();
         void init(ResultResponse resultResponse);
 
-        void renderNav(User user);
+        void renderNav(User user,boolean requestForResults);
 
-        void openDrawer();
         void loadHomeFragment();
         void loadProfileFragment();
         void loadAboutUsFragment();

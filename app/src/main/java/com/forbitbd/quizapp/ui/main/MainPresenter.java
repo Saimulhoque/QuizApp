@@ -40,7 +40,7 @@ public class MainPresenter implements MainContract.Presenter {
                     if(user==null){
                         mView.logout();
                     }else{
-                        mView.renderNav(user);
+                        mView.renderNav(user,true);
 
                     }
 
@@ -66,25 +66,6 @@ public class MainPresenter implements MainContract.Presenter {
         mView.startLoginActivity();
     }
 
-    @Override
-    public void openDrawer() {
-        mView.openDrawer();
-    }
-
-    @Override
-    public void loadHomeFragment() {
-        mView.loadHomeFragment();
-    }
-
-    @Override
-    public void loadProfileFragment() {
-        mView.loadProfileFragment();
-    }
-
-    @Override
-    public void loadAboutUsFragment() {
-        mView.loadAboutUsFragment();
-    }
 
     @Override
     public void getUserResults() {
@@ -112,9 +93,5 @@ public class MainPresenter implements MainContract.Presenter {
         }
     }
 
-    @Override
-    public void logout() {
-        appPreference.setLogin(false);
-        mView.logout();
-    }
+
 }

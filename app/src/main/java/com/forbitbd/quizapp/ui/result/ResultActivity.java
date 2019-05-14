@@ -10,6 +10,7 @@ import com.forbitbd.quizapp.PrebaseActivity;
 import com.forbitbd.quizapp.R;
 import com.forbitbd.quizapp.model.Category;
 import com.forbitbd.quizapp.model.Question;
+import com.forbitbd.quizapp.util.AdUtil;
 import com.forbitbd.quizapp.util.Constant;
 
 import java.util.List;
@@ -45,6 +46,8 @@ public class ResultActivity extends PrebaseActivity implements ResultContract.Vi
         getSupportActionBar().setTitle(category.getDisplay_name()+" | "+subCat);
 
         initView();
+
+        new AdUtil(this);
 
 
 

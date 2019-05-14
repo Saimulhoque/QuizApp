@@ -1,11 +1,9 @@
 package com.forbitbd.quizapp.ui.cat;
 
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.IntentCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +20,7 @@ import com.forbitbd.quizapp.model.SubCategory;
 import com.forbitbd.quizapp.ui.cat.question.QuestionFragment;
 import com.forbitbd.quizapp.ui.login.Login;
 import com.forbitbd.quizapp.ui.result.ResultActivity;
+import com.forbitbd.quizapp.util.AdUtil;
 import com.forbitbd.quizapp.util.AppPreference;
 import com.forbitbd.quizapp.util.Constant;
 import com.sdsmdg.tastytoast.TastyToast;
@@ -70,6 +69,8 @@ public class CatQuestionActivity extends PrebaseActivity implements CatContract.
 
 
         initView();
+
+        new AdUtil(this);
     }
 
     private void initView() {

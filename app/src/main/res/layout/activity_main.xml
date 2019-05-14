@@ -1,215 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.mxn.soul.flowingdrawer_core.FlowingDrawer
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawerlayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    app:edPosition="1"
-    app:edMenuSize="280dp"
-    app:edMenuBackground="@android:color/transparent">
+    android:layout_height="match_parent">
 
-    <!--content-->
-    <RelativeLayout
-        android:id="@+id/content"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/colorPrimary">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:tint="@android:color/black"
-                    android:id="@+id/ham"
-                    android:layout_gravity="center_vertical|start"
-                    android:src="@drawable/ham"/>
-
-                <TextView
-                    android:layout_marginStart="@dimen/large"
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical|start"
-                    android:text="@string/app_name" />
-
-            </LinearLayout>
-
-
-
-        </android.support.v7.widget.Toolbar>
-
-        <FrameLayout
-            android:id="@+id/main_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar">
-
-        </FrameLayout>
-
-    </RelativeLayout>
-
-    <!--menu-->
-    <com.mxn.soul.flowingdrawer_core.FlowingMenuLayout
-        android:id="@+id/menulayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_marginStart="@dimen/large"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:padding="@dimen/large">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/iv_profile" />
-
-                <TextView
-                    android:id="@+id/name"
-                    style="@style/NameTextStyle"
-                    android:layout_below="@+id/iv_profile"
-                    android:layout_centerHorizontal="true"/>
-
-                <TextView
-                    android:id="@+id/email"
-                    style="@style/EmailTextStyle"
-                    android:layout_below="@+id/name"
-                    android:layout_centerHorizontal="true"/>
-
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="@dimen/large"
-                android:background="@android:color/white">
-
-                <LinearLayout
-                    android:id="@+id/home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/item_back"
-                    android:padding="@dimen/small">
-
-                    <ImageView
-                        android:layout_width="@dimen/nav_icon"
-                        android:layout_height="@dimen/nav_icon"
-                        android:src="@drawable/home"
-                        android:tint="@color/colorPrimary"
-                        android:layout_gravity="center_vertical"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:text="@string/home"
-                        style="@style/NavTextStyle"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/item_back"
-                    android:padding="@dimen/small">
-
-                    <ImageView
-                        android:layout_width="@dimen/nav_icon"
-                        android:layout_height="@dimen/nav_icon"
-                        android:src="@drawable/ic_profile"
-                        android:tint="@color/colorPrimary"
-                        android:layout_gravity="center_vertical"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:text="@string/profile"
-                        style="@style/NavTextStyle"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/contact_us"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/item_back"
-                    android:padding="@dimen/small">
-
-                    <ImageView
-                        android:layout_width="@dimen/nav_icon"
-                        android:layout_height="@dimen/nav_icon"
-                        android:src="@drawable/contact"
-                        android:tint="@color/colorPrimary"
-                        android:layout_gravity="center_vertical"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:text="@string/contact_us"
-                        style="@style/NavTextStyle"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/item_back"
-                    android:padding="@dimen/small">
-
-                    <ImageView
-                        android:layout_width="@dimen/nav_icon"
-                        android:layout_height="@dimen/nav_icon"
-                        android:src="@drawable/logout"
-                        android:tint="@color/colorPrimary"
-                        android:layout_gravity="center_vertical"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:text="@string/log_out"
-                        style="@style/NavTextStyle"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical|start"
+                android:text="@string/app_name" />
 
         </LinearLayout>
 
-    </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
 
-</com.mxn.soul.flowingdrawer_core.FlowingDrawer>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/main_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/adView"
+                >
+
+            </FrameLayout>
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="@string/ad_unit_id">
+            </com.google.android.gms.ads.AdView>
+
+        </RelativeLayout>
+
+
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.forbitbd.quizapp.ui.main.nav.NavFragment"
+            android:layout_width="@dimen/nav_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_nav"
+            tools:layout="@layout/fragment_nav" />
+
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+
+</RelativeLayout>
+
+
+<!--<com.mxn.soul.flowingdrawer_core.FlowingDrawer-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/drawerlayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:clipChildren="false"-->
+    <!--android:clipToPadding="false"-->
+    <!--app:edPosition="1"-->
+    <!--app:edMenuSize="280dp"-->
+    <!--app:edMenuBackground="@android:color/transparent">-->
+
+    <!--&lt;!&ndash;content&ndash;&gt;-->
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+       <!---->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/main_container"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@+id/toolbar">-->
+
+        <!--</FrameLayout>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--&lt;!&ndash;menu&ndash;&gt;-->
+    <!--<com.mxn.soul.flowingdrawer_core.FlowingMenuLayout-->
+        <!--android:id="@+id/menulayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+
+
+    <!--</com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>-->
+
+<!--</com.mxn.soul.flowingdrawer_core.FlowingDrawer>-->
 
 <!--
 <RelativeLayout

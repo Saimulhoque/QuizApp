@@ -67,7 +67,7 @@ public class SubcatAdapter extends RecyclerView.Adapter<SubcatAdapter.SubcatHold
                 HomeFragment homeFragment = (HomeFragment) mFragment;
                 List<PostResult> postResults = homeFragment.getResults(subCategory.getName());
 
-                if(postResults==null){
+                if(postResults==null || postResults.size()<=0){
                     tvResult.setVisibility(View.GONE);
                     //tvResult.setText("0 Times");
                 }else{
